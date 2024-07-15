@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+     font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    table {
+      margin-top: 250px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+      
+    }
+    th,td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    a.button {
+        display: inline-block;
+        padding: 10px 20px;
+        color: #fff;
+        background-color: #007BFF;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        margin: 5px; 
+    }
+    a.button:hover {
+      background-color: #303f9f;
+    }
+    .button-container {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+     .table-container {
+      margin-top: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* This makes the container take the full height of the viewport */
+}
+  </style>
+  <body>
+    <div class="button-container">
+      <a href="/signup" class="button">Signup</a>
+      <a href="/login" class="button">Login</a>
+      <a href="/logout" class="button">Logout</a>
+      <a href="/addPost" id="addPost" class="button">Add Post</a>
+      <a href="/dashboard" class="button">Dashboard</a>
+    </div>
+    <div class="table-container">
+    <table border="1">
+      <tr>
+        <th>Product Name</th>
+        <th>Product Image</th>
+        <th>Product Description</th>
+        <th colspan="3">Actions</th>
+      </tr>
+      <% data.forEach(e=>{ %>
+      <tr>
+        <td><%=e.product %></td>
+        <td><img src="/<%= e.image %>" width="200" height="200" /></td>
+        <td><%= e.description %></td>
+
+        <td><a href="/view/<%=e._id%>">View</a></td>
+        <% if(user.role === 'admin'){ %>
+        <td><a href="/edit/<%=e._id%>">Edit</a></td>
+        <td><a href="/delete/<%=e._id%>">Delete</a></td>
+        <% } %>
+      </tr>
+      <% }) %>
+    </table>
+    </div>
+  </body>
+</html>
